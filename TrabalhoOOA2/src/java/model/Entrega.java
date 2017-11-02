@@ -20,7 +20,6 @@ public class Entrega {
     private RotaEntrega RotaEntrega;
     private Date DataContratacao;
     private boolean Status;
-    private double PesoMercadoria;
 
     public Entrega() {
     }
