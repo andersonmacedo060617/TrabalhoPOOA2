@@ -5,71 +5,144 @@
  */
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author aluno
  */
-public class Cliente {
-    private int Id;
-    private String Nome;
-    private String CPF;
-    private String Login;
-    private String Senha;
-    private ArrayList<Entrega> EntregasContratadas;
-    
+@Entity
+@Table(name = "cliente")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")
+    , @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :id")
+    , @NamedQuery(name = "Cliente.findByNome", query = "SELECT c FROM Cliente c WHERE c.nome = :nome")
+    , @NamedQuery(name = "Cliente.findByCpf", query = "SELECT c FROM Cliente c WHERE c.cpf = :cpf")
+    , @NamedQuery(name = "Cliente.findByLogin", query = "SELECT c FROM Cliente c WHERE c.login = :login")
+    , @NamedQuery(name = "Cliente.findBySenha", query = "SELECT c FROM Cliente c WHERE c.senha = :senha")})
+public class Cliente implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "Nome")
+    private String nome;
+    @Column(name = "CPF")
+    private String cpf;
+    @Basic(optional = false)
+    @Column(name = "Login")
+    private String login;
+    @Basic(optional = false)
+    @Column(name = "Senha")
+    private String senha;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<Entrega> entregaList;
 
     public Cliente() {
     }
 
-    public int getId() {
-        return Id;
+    public Cliente(Integer id) {
+        this.id = id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public Cliente(Integer id, String nome, String login, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
-    public void setLogin(String Login) {
-        this.Login = Login;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public ArrayList<Entrega> getEntregasContratadas() {
-        return EntregasContratadas;
+    @XmlTransient
+    public List<Entrega> getEntregaList() {
+        return entregaList;
     }
 
-    public void setEntregasContratadas(ArrayList<Entrega> EntregasContratadas) {
-        this.EntregasContratadas = EntregasContratadas;
+    public void setEntregaList(List<Entrega> entregaList) {
+        this.entregaList = entregaList;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Cliente)) {
+            return false;
+        }
+        Cliente other = (Cliente) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "model.Cliente[ id=" + id + " ]";
+    }
     
 }

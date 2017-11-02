@@ -5,72 +5,143 @@
  */
 package model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author aluno
  */
-public class Motorista {
-    private int Id;
-    private String Nome;
-    private String CPF;
-    private String Login;
-    private String Senha;
-    private ArrayList<Entrega> Entregas;
+@Entity
+@Table(name = "motorista")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Motorista.findAll", query = "SELECT m FROM Motorista m")
+    , @NamedQuery(name = "Motorista.findById", query = "SELECT m FROM Motorista m WHERE m.id = :id")
+    , @NamedQuery(name = "Motorista.findByNome", query = "SELECT m FROM Motorista m WHERE m.nome = :nome")
+    , @NamedQuery(name = "Motorista.findByCpf", query = "SELECT m FROM Motorista m WHERE m.cpf = :cpf")
+    , @NamedQuery(name = "Motorista.findByLogin", query = "SELECT m FROM Motorista m WHERE m.login = :login")
+    , @NamedQuery(name = "Motorista.findBySenha", query = "SELECT m FROM Motorista m WHERE m.senha = :senha")})
+public class Motorista implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "Id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "Nome")
+    private String nome;
+    @Column(name = "CPF")
+    private String cpf;
+    @Basic(optional = false)
+    @Column(name = "Login")
+    private String login;
+    @Basic(optional = false)
+    @Column(name = "Senha")
+    private String senha;
+    @OneToMany(mappedBy = "motorista")
+    private List<Entrega> entregaList;
 
     public Motorista() {
     }
 
-    public ArrayList<Entrega> getEntregas() {
-        return Entregas;
+    public Motorista(Integer id) {
+        this.id = id;
     }
 
-    public void setEntregas(ArrayList<Entrega> Entregas) {
-        this.Entregas = Entregas;
+    public Motorista(Integer id, String nome, String login, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
     }
 
-    
-        
-    public int getId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
-    public void setLogin(String Login) {
-        this.Login = Login;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
-    
+
+    @XmlTransient
+    public List<Entrega> getEntregaList() {
+        return entregaList;
+    }
+
+    public void setEntregaList(List<Entrega> entregaList) {
+        this.entregaList = entregaList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Motorista)) {
+            return false;
+        }
+        Motorista other = (Motorista) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "model.Motorista[ id=" + id + " ]";
+    }
     
 }
