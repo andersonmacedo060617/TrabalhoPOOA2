@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Porteentrega.findByTipoVeiculo", query = "SELECT p FROM Porteentrega p WHERE p.tipoVeiculo = :tipoVeiculo")
     , @NamedQuery(name = "Porteentrega.findByValorKm", query = "SELECT p FROM Porteentrega p WHERE p.valorKm = :valorKm")
     , @NamedQuery(name = "Porteentrega.findByPesoLimite", query = "SELECT p FROM Porteentrega p WHERE p.pesoLimite = :pesoLimite")
-    , @NamedQuery(name = "Porteentrega.findByTempoPorKm", query = "SELECT p FROM Porteentrega p WHERE p.tempoPorKm = :tempoPorKm")})
+    })
 public class Porteentrega implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,9 +56,10 @@ public class Porteentrega implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PesoLimite")
     private Double pesoLimite;
+ 
     @Basic(optional = false)
-    @Column(name = "TempoPorKm")
-    private double tempoPorKm;
+    @Column(name = "VelocidadeMedia")
+    private double velocidadeMedia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "porteEntrega")
     private List<Entrega> entregaList;
 
@@ -69,12 +70,11 @@ public class Porteentrega implements Serializable {
         this.id = id;
     }
 
-    public Porteentrega(Integer id, String descricao, String tipoVeiculo, double valorKm, double tempoPorKm) {
+    public Porteentrega(Integer id, String descricao, String tipoVeiculo, double valorKm) {
         this.id = id;
         this.descricao = descricao;
         this.tipoVeiculo = tipoVeiculo;
         this.valorKm = valorKm;
-        this.tempoPorKm = tempoPorKm;
     }
 
     public Integer getId() {
@@ -117,13 +117,15 @@ public class Porteentrega implements Serializable {
         this.pesoLimite = pesoLimite;
     }
 
-    public double getTempoPorKm() {
-        return tempoPorKm;
+    public double getVelocidadeMedia() {
+        return velocidadeMedia;
     }
 
-    public void setTempoPorKm(double tempoPorKm) {
-        this.tempoPorKm = tempoPorKm;
+    public void setVelocidadeMedia(double velocidadeMedia) {
+        this.velocidadeMedia = velocidadeMedia;
     }
+
+    
 
     @XmlTransient
     public List<Entrega> getEntregaList() {
@@ -133,6 +135,7 @@ public class Porteentrega implements Serializable {
     public void setEntregaList(List<Entrega> entregaList) {
         this.entregaList = entregaList;
     }
+    
 
     @Override
     public int hashCode() {

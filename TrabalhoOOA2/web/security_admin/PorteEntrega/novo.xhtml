@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../template/templateAdmin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        <h:form>
+            <div class="col-lg-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Novo Porte de Transporte
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-lg-1">Descrição</label>
+                                <div class="col-lg-5">
+                                    <h:inputText class="form-control" value="#{porteEntrega.porteEntrega.descricao}"></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-lg-1">Tipo de Veiculo</label>
+                                <div class="col-lg-3">
+                                    <h:inputText class="form-control" value="#{porteEntrega.porteEntrega.tipoVeiculo}"></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-lg-1">Valor Por Km</label>
+                                <div class="col-lg-2">
+                                    <h:inputText class="form-control" value="#{porteEntrega.porteEntrega.valorKm}"></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-lg-1">Peso Limite</label>
+                                <div class="col-lg-5">
+                                    <h:inputText class="form-control" value="#{porteEntrega.porteEntrega.pesoLimite}"></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-lg-1">Velocidade Media</label>
+                                <div class="col-lg-5">
+                                    <h:inputText class="form-control" value="#{porteEntrega.porteEntrega.velocidadeMedia}"></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-offset-1">
+                                <div class="col-sm-1">
+                                    <h:commandLink action="#{porteEntrega.ListaPorteEntrega()}" class="btn btn-info">Voltar</h:commandLink>
+                                </div>
+                                <div class="col-sm-1">
+                                    <h:commandLink action="#{porteEntrega.Gravar()}" class="btn btn-success">Gravar</h:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
