@@ -16,6 +16,7 @@ public class PorteEntrega {
     private String Descricao;
     private String TipoVeiculo;
     private double ValorKm;
+    private double PesoLimite;
     private double TempoPorKm;
 
     public PorteEntrega() {
