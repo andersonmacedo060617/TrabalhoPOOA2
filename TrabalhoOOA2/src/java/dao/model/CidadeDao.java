@@ -17,12 +17,12 @@ import model.Porteentrega;
  *
  * @author Anderson2
  */
-public class PorteEntregaDao extends BaseDao<Porteentrega>{
+public class CidadeDao extends BaseDao<Cidade>{
     
-    public List<Porteentrega> findAll(){
+    public List<Cidade> findAll(){
         open();
         try{
-            Query q = em.createNamedQuery("Porteentrega.findAll");
+            Query q = em.createNamedQuery("Cidade.findAll");
             return q.getResultList();
         }finally{
             close();
@@ -30,15 +30,15 @@ public class PorteEntregaDao extends BaseDao<Porteentrega>{
         
     }
     
-    public Porteentrega findById(int Id){
+    public Cidade findById(int IdCidade){
         this.open();
         
         try{
-            Query q = em.createNamedQuery("Porteentrega.findById");
+            Query q = em.createNamedQuery("Cidade.findById");
         
-            q.setParameter("id", Id);
+            q.setParameter("id", IdCidade);
 
-            return (Porteentrega) q.getSingleResult();
+            return (Cidade) q.getSingleResult();
         
         }catch(NoResultException ex){
             return null;
@@ -48,7 +48,4 @@ public class PorteEntregaDao extends BaseDao<Porteentrega>{
             this.close();
         }
     }
-    
-    
-    
 }

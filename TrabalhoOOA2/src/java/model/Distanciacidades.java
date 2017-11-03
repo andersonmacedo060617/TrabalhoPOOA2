@@ -32,7 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Distanciacidades.findAll", query = "SELECT d FROM Distanciacidades d")
-    , @NamedQuery(name = "Distanciacidades.findById", query = "SELECT d FROM Distanciacidades d WHERE d.id = :id")})
+    ,@NamedQuery(name = "Distanciacidades.findById", query = "SELECT d FROM Distanciacidades d WHERE d.id = :id")
+    ,@NamedQuery(name = "Distanciacidades.findAllCompleta", query = "SELECT d FROM Distanciacidades d JOIN Cidade ci ON d.cidadeInicio = ci JOIN Cidade cf ON d.cidadeFim = cf")
+})
 public class Distanciacidades implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,6 +51,8 @@ public class Distanciacidades implements Serializable {
     @JoinColumn(name = "CidadeInicio", referencedColumnName = "Id")
     @ManyToOne(optional = false)
     private Cidade cidadeInicio;
+    @Column(name = "Distancia")
+    private Double distancia;
 
     public Distanciacidades() {
     }
@@ -64,6 +68,16 @@ public class Distanciacidades implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(Double distancia) {
+        this.distancia = distancia;
+    }
+    
+    
 
     @XmlTransient
     public List<Pontoparadaprevisto> getPontoparadaprevistoList() {

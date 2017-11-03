@@ -5,6 +5,7 @@
  */
 package bean.controller;
 
+import dao.model.CidadeDao;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -43,10 +44,22 @@ public class CidadeBean {
      * Creates a new instance of CidadeBean
      */
     public CidadeBean() {
+        this.cidade = new Cidade();
     }
     
     public String ListaCidades(){
+        this.lstCidades = new CidadeDao().findAll();
         return "/security_admin/Cidade/index";
     }
+    
+    public String Novo(){
+        return "/security_admin/Cidade/novo";
+    }
+    
+    public String Gravar(){
+        new CidadeDao().save(this.cidade);
+        return this.ListaCidades();
+    }
+    
     
 }
