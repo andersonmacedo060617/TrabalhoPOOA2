@@ -17,40 +17,57 @@
                     <div class="panel-body">
                         <div class="form-horizontal">
                             <div class="form-group">
+                                
+                                
                                 <label class="col-lg-1">Cidade Inicio</label>
                                 <div class="col-lg-3">
-                                    <h:selectOneMenu value="#{distanciaCidades.distanciaCidades.cidadeInicio.id}" class="form-control">
+                                    
+                                    <h:selectOneMenu id="cidadeIni" value="#{distanciaCidades.cidadeIni}" class="form-control"
+                                        required="true"  
+                                        requiredMessage="Cidade é obrigatória">
+                                        <f:selectItem itemValue="" itemLabel="Selecione uma Cidade"/> 
                                         <f:selectItems value="#{distanciaCidades.cidadesItems}" 
-                                            var="cid"
-                                            itemLabel="#{cid.nome}"  
-                                            itemValue="#{cid.id}"
+                                            var="cidIni"
+                                            itemLabel="#{cidIni.nome}"  
+                                            itemValue="#{cidIni.id}"
                                         />
                                     </h:selectOneMenu>
+                                    <h:message for="cidadeIni" style="color: red;"  />
                                 </div>
+                                
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-1">Cidade Fim</label>
                                 <div class="col-lg-3">
-                                    <h:selectOneMenu value="#{distanciaCidades.distanciaCidades.cidadeFim.id}" class="form-control">
+                                    <h:selectOneMenu value="#{distanciaCidades.cidadeFim}" id="cidadeFim" class="form-control"
+                                        required="true"  
+                                        requiredMessage="Cidade é obrigatória">
+                                        <f:selectItem itemValue="" itemLabel="Selecione uma Cidade"/> 
                                         <f:selectItems value="#{distanciaCidades.cidadesItems}" 
-                                            var="cid"
-                                            itemLabel="#{cid.nome}"  
-                                            itemValue="#{cid.id}"
+                                            var="cidFim"
+                                            itemLabel="#{cidFim.nome}"  
+                                            itemValue="#{cidFim.id}"
                                         />
                                     </h:selectOneMenu>
+                                    <h:message for="cidadeFim" style="color: red;"  />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-lg-1">Distância(Km)</label>
                                 <div class="col-lg-2">
-                                    <h:inputText value="#{distanciaCidades.distanciaCidades.distancia}" class="form-control"></h:inputText>
+                                    <h:inputText value="#{distanciaCidades.distanciaCidades.distancia}" class="form-control" required="true"
+                                                 requiredMessage="Valor é obrigatório" id="distancia">
+                                    <f:convertNumber integerOnly="true" minIntegerDigits="1"  />
+                                    </h:inputText>
+                                    <h:message for="distancia" style="color: red;"  />
                                 </div>
+                                
                             </div>
                             
                             
                             <div class="col-lg-offset-1">
                                 <div class="col-sm-1">
-                                    <h:commandLink action="#{distanciaCidades.ListaDistanciaCidades()}" class="btn btn-info">Voltar</h:commandLink>
+                                    <h:commandLink immediate="true" action="#{distanciaCidades.ListaDistanciaCidades()}"  class="btn btn-info">Voltar</h:commandLink>
                                 </div>
                                 <div class="col-sm-1">
                                     <h:commandLink action="#{distanciaCidades.Gravar()}" class="btn btn-success">Gravar</h:commandLink>

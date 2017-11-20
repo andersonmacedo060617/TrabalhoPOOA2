@@ -5,6 +5,8 @@
  */
 package bean.controller;
 
+import dao.model.RotaProntoDao;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -19,6 +21,13 @@ import model.Rotapronta;
 public class RotaProntoBean {
     private List<Rotapronta> lstRotasProntas;
     private Rotapronta rotaPronta;
+
+    public RotaProntoBean() {
+        this.rotaPronta = new Rotapronta();
+        this.lstRotasProntas = new ArrayList<>();
+    }
+    
+    
 
     public List<Rotapronta> getLstRotasProntas() {
         return lstRotasProntas;
@@ -37,11 +46,10 @@ public class RotaProntoBean {
     }
     
     
-    /**
-     * Creates a new instance of RotaProntoBean
-     */
-    public RotaProntoBean() {
-        this.rotaPronta = new Rotapronta();
+    
+    public String LstRotasProntas(){
+        this.lstRotasProntas = new RotaProntoDao().findAll();
+        return "/security_admin/RotaPronta/index";
     }
     
     

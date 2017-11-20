@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "rotapronta")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Rotapronta.findAll", query = "SELECT r FROM Rotapronta r")
+    @NamedQuery(name = "Rotapronta.findAll", query = "SELECT r FROM Rotapronta r JOIN Cidade co "
+            + "ON r.cidadeOrigem = co JOIN Cidade cd on r.cidadeDestino = cd")
     , @NamedQuery(name = "Rotapronta.findById", query = "SELECT r FROM Rotapronta r WHERE r.id = :id")
     , @NamedQuery(name = "Rotapronta.findByDescricao", query = "SELECT r FROM Rotapronta r WHERE r.descricao = :descricao")})
 public class Rotapronta implements Serializable {

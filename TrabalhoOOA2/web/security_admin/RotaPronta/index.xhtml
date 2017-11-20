@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../template/templateAdmin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+        <h:form>
+        <div>
+            <h:commandLink action="#{rotaPronto.Novo()}" class="btn btn-success" title="Novo Registro"><i class="fa fa-plus"></i></h:commandLink>
+        </div>
+            
+            <br />
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Lista Rotas
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Descrição</th>
+                                    <th>Cidade Origem</th>
+                                    <th>Cidade Destino</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${rotaPronto.lstRotasProntas}" var="rota" >
+                                    <tr>
+                                        <td>#{rota.id}</td>
+                                        <td>#{rota.descricao}</td>
+                                        <td>#{rota.cidadeOrigem.nome}</td>
+                                        <td>#{rota.cidadeDestino.nome}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        
+        </h:form>
+    </ui:define>
+
+</ui:composition>
