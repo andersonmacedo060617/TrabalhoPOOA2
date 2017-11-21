@@ -27,6 +27,7 @@
                                     <th>Descrição</th>
                                     <th>Cidade Origem</th>
                                     <th>Cidade Destino</th>
+                                    <th>Rota Pronta</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -37,6 +38,7 @@
                                         <td>#{rota.descricao}</td>
                                         <td>#{rota.cidadeOrigem.nome}</td>
                                         <td>#{rota.cidadeDestino.nome}</td>
+                                        <td>#{rota.RotaOrigemDestinoValido()?"Sim": "Não"}</td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

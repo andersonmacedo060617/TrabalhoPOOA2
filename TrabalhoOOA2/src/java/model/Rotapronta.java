@@ -144,4 +144,8 @@ public class Rotapronta implements Serializable {
         return "model.Rotapronta[ id=" + id + " ]";
     }
     
+    public boolean RotaOrigemDestinoValido(){
+        return false;
+    }
+    
 }

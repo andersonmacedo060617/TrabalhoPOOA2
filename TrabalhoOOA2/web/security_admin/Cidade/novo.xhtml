@@ -17,17 +17,17 @@
                             <div class="form-group">
                                 <label class="col-lg-1">Nome</label>
                                 <div class="col-lg-5">
-                                    <h:inputText class="form-control" value="#{cidade.cidade.nome}"></h:inputText>
+                                    <h:inputText tabindex="1" class="form-control" value="#{cidade.cidade.nome}"></h:inputText>
                                 </div>
                             </div>
                             
                             
                             <div class="col-lg-offset-1">
                                 <div class="col-sm-1">
-                                    <h:commandLink action="#{cidade.ListaCidades()}" class="btn btn-info">Voltar</h:commandLink>
+                                    <h:commandLink action="#{cidade.ListaCidades()}" tabindex="2" class="btn btn-info">Voltar</h:commandLink>
                                 </div>
                                 <div class="col-sm-1">
-                                    <h:commandLink action="#{cidade.Gravar()}" class="btn btn-success">Gravar</h:commandLink>
+                                    <h:commandLink action="#{cidade.Gravar()}" tabindex="3" class="btn btn-success">Gravar</h:commandLink>
                                 </div>
                             </div>
                         </div>

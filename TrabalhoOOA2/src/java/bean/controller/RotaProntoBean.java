@@ -5,11 +5,14 @@
  */
 package bean.controller;
 
+import dao.model.CidadeDao;
+import dao.model.DistanciaCidadesDao;
 import dao.model.RotaProntoDao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import model.Cidade;
 import model.Rotapronta;
 
 /**
@@ -21,10 +24,13 @@ import model.Rotapronta;
 public class RotaProntoBean {
     private List<Rotapronta> lstRotasProntas;
     private Rotapronta rotaPronta;
+    private int idCidadeOrigem, idCidadeDestino;
+    private List<Cidade> lstCidades;
 
     public RotaProntoBean() {
         this.rotaPronta = new Rotapronta();
         this.lstRotasProntas = new ArrayList<>();
+        this.lstCidades = new CidadeDao().findAll();
     }
     
     
@@ -44,6 +50,32 @@ public class RotaProntoBean {
     public void setRotaPronta(Rotapronta rotaPronta) {
         this.rotaPronta = rotaPronta;
     }
+
+    public int getIdCidadeOrigem() {
+        return idCidadeOrigem;
+    }
+
+    public void setIdCidadeOrigem(int idCidadeOrigem) {
+        this.idCidadeOrigem = idCidadeOrigem;
+    }
+
+    public int getIdCidadeDestino() {
+        return idCidadeDestino;
+    }
+
+    public void setIdCidadeDestino(int idCidadeDestino) {
+        this.idCidadeDestino = idCidadeDestino;
+    }
+
+    public List<Cidade> getLstCidades() {
+        return lstCidades;
+    }
+
+    public void setLstCidades(List<Cidade> lstCidades) {
+        this.lstCidades = lstCidades;
+    }
+    
+    
     
     
     
@@ -52,5 +84,19 @@ public class RotaProntoBean {
         return "/security_admin/RotaPronta/index";
     }
     
+    public String Novo(){
+        return "/security_admin/RotaPronta/novo";
+    }
+    
+    public String Gravar(){
+        this.rotaPronta.setCidadeOrigem(new CidadeDao().findById(idCidadeOrigem));
+        this.rotaPronta.setCidadeDestino(new CidadeDao().findById(idCidadeDestino));
+        
+        if(this.rotaPronta.getCidadeOrigem() != null && this.rotaPronta.getCidadeDestino() != null){
+            new RotaProntoDao().save(this.rotaPronta);
+        }
+        
+        return this.LstRotasProntas();
+    }
     
 }

@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../template/templateAdmin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <div class="col-lg-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        Rota - Novo Registro
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-lg-2">Distância(Km)</label>
+                                <div class="col-lg-8">
+                                    <h:inputText value="#{rotaPronto.rotaPronta.descricao}" class="form-control" required="true"
+                                                 requiredMessage="Descrição obrigatória" id="descricao">
+                                    </h:inputText>
+                                    <h:message for="descricao" style="color: red;"  />
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-lg-2">Cidade Origem</label>
+                                <div class="col-lg-3">
+                                    
+                                    <h:selectOneMenu id="cidadeIni" value="#{rotaPronto.idCidadeOrigem}" class="form-control"
+                                        required="true"  
+                                        requiredMessage="Cidade é obrigatória">
+                                        <f:selectItem itemValue="" itemLabel="Selecione uma Cidade"/> 
+                                        <f:selectItems value="#{rotaPronto.lstCidades}" 
+                                            var="cidOri"
+                                            itemLabel="#{cidOri.nome}"  
+                                            itemValue="#{cidOri.id}"
+                                        />
+                                    </h:selectOneMenu>
+                                    <h:message for="cidadeIni" style="color: red;"  />
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-lg-2">Cidade Destino</label>
+                                <div class="col-lg-3">
+                                    <h:selectOneMenu value="#{rotaPronto.idCidadeDestino}" id="cidadeFim" class="form-control"
+                                        required="true"  
+                                        requiredMessage="Cidade é obrigatória">
+                                        <f:selectItem itemValue="" itemLabel="Selecione uma Cidade"/> 
+                                        <f:selectItems value="#{rotaPronto.lstCidades}" 
+                                            var="cidDest"
+                                            itemLabel="#{cidDest.nome}"  
+                                            itemValue="#{cidDest.id}"
+                                        />
+                                    </h:selectOneMenu>
+                                    <h:message for="cidadeFim" style="color: red;"  />
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-lg-offset-1">
+                                <div class="col-sm-1">
+                                    <h:commandLink immediate="true" action="#{rotaPronto.LstRotasProntas()}"  class="btn btn-info">Voltar</h:commandLink>
+                                </div>
+                                <div class="col-sm-1">
+                                    <h:commandLink action="#{rotaPronto.Gravar()}" class="btn btn-success">Gravar</h:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
