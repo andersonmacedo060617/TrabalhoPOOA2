@@ -145,7 +145,13 @@ public class Rotapronta implements Serializable {
     }
     
     public boolean RotaOrigemDestinoValido(){
-        return false;
+        boolean cidadeFimOk = false;
+        for (Pontoparadaprevisto pontoparadaprevisto : pontoparadaprevistoList) {
+            if(pontoparadaprevisto.getDistanciaCidades().getCidadeFim().getNome().equals(cidadeDestino.getNome())){
+                cidadeFimOk = true;
+            }
+        }
+        return cidadeFimOk;
     }
     
 }
