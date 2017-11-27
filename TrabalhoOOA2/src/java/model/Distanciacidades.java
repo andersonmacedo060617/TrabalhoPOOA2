@@ -34,6 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Distanciacidades.findAll", query = "SELECT d FROM Distanciacidades d")
     ,@NamedQuery(name = "Distanciacidades.findById", query = "SELECT d FROM Distanciacidades d WHERE d.id = :id")
     ,@NamedQuery(name = "Distanciacidades.findAllCompleta", query = "SELECT d FROM Distanciacidades d JOIN Cidade ci ON d.cidadeInicio = ci JOIN Cidade cf ON d.cidadeFim = cf")
+        ,@NamedQuery(name = "Distanciacidades.findByIdCompleta", query = "SELECT d FROM Distanciacidades d JOIN Cidade ci ON d.cidadeInicio = ci JOIN Cidade cf ON d.cidadeFim = cf "
+                + "WHERE d.id = :id")
 })
 public class Distanciacidades implements Serializable {
 
@@ -129,4 +131,8 @@ public class Distanciacidades implements Serializable {
         return "model.Distanciacidades[ id=" + id + " ]";
     }
     
+    
+    public String strDeParaDistancia(){
+        return "De - " + this.cidadeInicio.getNome() + " | Para - " + this.cidadeFim.getNome() + " | " + this.distancia.toString() + "Km";
+    }
 }

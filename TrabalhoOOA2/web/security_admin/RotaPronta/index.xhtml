@@ -10,9 +10,6 @@
         <h:form>
         <div>
             <h:commandLink action="#{rotaPronto.Novo()}" class="btn btn-success" title="Novo Registro"><i class="fa fa-plus"></i></h:commandLink>
-            <h:commandLink value="Add Parada" class="btn btn-info" action="#{rotaPronto.AddPontoParada()}" title="Adicionar Parada">
-                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-             </h:commandLink>
         </div>
             
             <br />
@@ -31,7 +28,7 @@
                                     Ação
                                 </f:facet>
                           
-                                <h:commandLink value="Add Parada" class="btn btn-info" actionListener="#{rotaPronto.AddPontoParada}" title="Adicionar Parada">
+                                <h:commandLink value="Add Parada" class="btn btn-info" action="#{rotaPronto.AddPontoParada(rota)}" title="Adicionar Parada">
                                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                                 </h:commandLink>
                           
@@ -65,6 +62,12 @@
                                     Rota Pronta
                                 </f:facet>
                                 #{rota.RotaOrigemDestinoValido()?"Sim": "Não"}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    Quantidade de paradas
+                                </f:facet>
+                                #{rota.pontoparadaprevistoList.size()}
                             </h:column>
                         </h:dataTable>
                         

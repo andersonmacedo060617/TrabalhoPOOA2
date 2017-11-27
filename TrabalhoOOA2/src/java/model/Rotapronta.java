@@ -5,6 +5,7 @@
  */
 package model;
 
+import dao.model.PontoParadaDao;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -58,6 +59,7 @@ public class Rotapronta implements Serializable {
     private List<Rotaentrega> rotaentregaList;
 
     public Rotapronta() {
+        
     }
 
     public Rotapronta(Integer id) {
@@ -146,12 +148,25 @@ public class Rotapronta implements Serializable {
     
     public boolean RotaOrigemDestinoValido(){
         boolean cidadeFimOk = false;
+        this.pontoparadaprevistoList = new PontoParadaDao().findAllByRota();
         for (Pontoparadaprevisto pontoparadaprevisto : pontoparadaprevistoList) {
             if(pontoparadaprevisto.getDistanciaCidades().getCidadeFim().getNome().equals(cidadeDestino.getNome())){
                 cidadeFimOk = true;
             }
         }
         return cidadeFimOk;
+    }
+    
+    public int UltimoNumeroOrdemParada(){
+        int ultimoNumero = 0;
+        this.pontoparadaprevistoList = new PontoParadaDao().findAllByRota();
+        for (Pontoparadaprevisto ponto : pontoparadaprevistoList) {
+            if(ponto.getOrdem() > ultimoNumero){
+                ultimoNumero = ponto.getOrdem();
+            }
+        }
+        
+        return ultimoNumero;
     }
     
 }

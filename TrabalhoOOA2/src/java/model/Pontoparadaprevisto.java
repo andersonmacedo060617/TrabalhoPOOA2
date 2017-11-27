@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Pontoparadaprevisto.findAll", query = "SELECT p FROM Pontoparadaprevisto p")
+    , @NamedQuery(name = "Pontoparadaprevisto.findAllCompleto", query = "SELECT p FROM Pontoparadaprevisto p join Distanciacidades dc on dc = p.distanciaCidades join Rotapronta r on r = p.rota")
+    , @NamedQuery(name = "Pontoparadaprevisto.findAllByRotaCompleto", query = "SELECT p FROM Pontoparadaprevisto p join Distanciacidades dc on dc = p.distanciaCidades join Rotapronta r on r = p.rota WHERE p.rota.id = :idRota")
     , @NamedQuery(name = "Pontoparadaprevisto.findById", query = "SELECT p FROM Pontoparadaprevisto p WHERE p.id = :id")
     , @NamedQuery(name = "Pontoparadaprevisto.findByOrdem", query = "SELECT p FROM Pontoparadaprevisto p WHERE p.ordem = :ordem")
     , @NamedQuery(name = "Pontoparadaprevisto.findByTempoParada", query = "SELECT p FROM Pontoparadaprevisto p WHERE p.tempoParada = :tempoParada")})
@@ -129,5 +131,7 @@ public class Pontoparadaprevisto implements Serializable {
     public String toString() {
         return "model.Pontoparadaprevisto[ id=" + id + " ]";
     }
+    
+    
     
 }
