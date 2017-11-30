@@ -27,7 +27,7 @@
         <param-value>true</param-value>
     </context-param>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>faces/loginCliente.xhtml</welcome-file>
     </welcome-file-list>
         <mime-mapping>
         <extension>woff</extension>

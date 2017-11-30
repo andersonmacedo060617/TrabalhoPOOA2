@@ -35,4 +35,18 @@ public class PontoParadaDao extends BaseDao<Pontoparadaprevisto>{
             close();
         }
     }
+    
+    public void save(Pontoparadaprevisto C){
+        this.open();
+        try{
+            em.getTransaction().begin();
+            
+            em.persist(C);
+            em.getTransaction().commit();
+        }catch(Exception ex){
+            throw ex;
+        }finally{
+            close();
+        }
+    }
 }

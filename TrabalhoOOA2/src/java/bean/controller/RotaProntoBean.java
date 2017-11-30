@@ -135,6 +135,11 @@ public class RotaProntoBean {
         return this.LstRotasProntas();
     }
     
+    public String Visualizar(Rotapronta r){
+        this.rotaPronta = r;
+        return "/security_admin/RotaPronta/visualizar";
+    }
+    
     public String AddPontoParada(Rotapronta r){
         this.rotaPronta = r;
         return "/security_admin/RotaPronta/addPontoParada"; 
@@ -143,10 +148,9 @@ public class RotaProntoBean {
     public String GravaPontoParada(){
         Distanciacidades distanciaSelecionada = new DistanciaCidadesDao().findById(this.idDistanciaSelecionada);
         if(distanciaSelecionada != null){
-            Pontoparadaprevisto ponto = new Pontoparadaprevisto();
-            ponto.setRota(rotaPronta);
-            ponto.setDistanciaCidades(distanciaSelecionada);
-            ponto.setOrdem((rotaPronta.UltimoNumeroOrdemParada() + 1));
+            pontoParada.setRota(rotaPronta);
+            pontoParada.setDistanciaCidades(distanciaSelecionada);
+            pontoParada.setOrdem((rotaPronta.UltimoNumeroOrdemParada() + 1));
             new PontoParadaDao().save(this.pontoParada);
         }
         return LstRotasProntas(); 

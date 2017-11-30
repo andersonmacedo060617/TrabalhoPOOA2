@@ -32,8 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "rotapronta")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Rotapronta.findAll", query = "SELECT r FROM Rotapronta r JOIN Cidade co "
-            + "ON r.cidadeOrigem = co JOIN Cidade cd on r.cidadeDestino = cd")
+    @NamedQuery(name = "Rotapronta.findAll", query = "SELECT r FROM Rotapronta r")
     , @NamedQuery(name = "Rotapronta.findById", query = "SELECT r FROM Rotapronta r WHERE r.id = :id")
     , @NamedQuery(name = "Rotapronta.findByDescricao", query = "SELECT r FROM Rotapronta r WHERE r.descricao = :descricao")})
 public class Rotapronta implements Serializable {
@@ -148,7 +147,6 @@ public class Rotapronta implements Serializable {
     
     public boolean RotaOrigemDestinoValido(){
         boolean cidadeFimOk = false;
-        this.pontoparadaprevistoList = new PontoParadaDao().findAllByRota();
         for (Pontoparadaprevisto pontoparadaprevisto : pontoparadaprevistoList) {
             if(pontoparadaprevisto.getDistanciaCidades().getCidadeFim().getNome().equals(cidadeDestino.getNome())){
                 cidadeFimOk = true;
@@ -157,9 +155,17 @@ public class Rotapronta implements Serializable {
         return cidadeFimOk;
     }
     
+    public double DistanciaRotaMontada(){
+        double distanciaTotal = 0;
+        for (Pontoparadaprevisto ponto : pontoparadaprevistoList) {
+            distanciaTotal = distanciaTotal + ponto.getDistanciaCidades().getDistancia();
+        }
+        
+        return distanciaTotal;
+    }
+    
     public int UltimoNumeroOrdemParada(){
         int ultimoNumero = 0;
-        this.pontoparadaprevistoList = new PontoParadaDao().findAllByRota();
         for (Pontoparadaprevisto ponto : pontoparadaprevistoList) {
             if(ponto.getOrdem() > ultimoNumero){
                 ultimoNumero = ponto.getOrdem();
