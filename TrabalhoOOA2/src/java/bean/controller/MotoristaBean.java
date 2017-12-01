@@ -5,8 +5,10 @@
  */
 package bean.controller;
 
+import dao.model.MotoristaDao;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import model.Motorista;
 
 /**
@@ -14,18 +16,28 @@ import model.Motorista;
  * @author Anderson2
  */
 @ManagedBean(name = "motorista")
-@SessionScoped
+@RequestScoped
 public class MotoristaBean {
 
-    private Motorista motoritaLogin;
+    private Motorista motorista;
+    private List<Motorista> lstMotoristas;
 
-    public Motorista getMotoritaLogin() {
-        return motoritaLogin;
+    public Motorista getMotorista() {
+        return motorista;
     }
 
-    public void setMotoritaLogin(Motorista motoritaLogin) {
-        this.motoritaLogin = motoritaLogin;
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
+
+    public List<Motorista> getLstMotoristas() {
+        return lstMotoristas;
+    }
+
+    public void setLstMotoristas(List<Motorista> lstMotoristas) {
+        this.lstMotoristas = lstMotoristas;
+    }
+    
     
     
     /**
@@ -34,7 +46,19 @@ public class MotoristaBean {
     public MotoristaBean() {
     }
     
-    public String Logar(){
-        return null;
+    public String ListaMotoristas(){
+        lstMotoristas = new MotoristaDao().findAll();
+        return "security_admin/Motorista/index";
     }
+    
+    public String Novo(){
+        this.motorista = new Motorista();
+        return "security_admin/Motorista/novo";
+    }
+    
+    public String Gravar(){
+        new MotoristaDao().save(this.motorista);
+        return ListaMotoristas();
+    }
+    
 }

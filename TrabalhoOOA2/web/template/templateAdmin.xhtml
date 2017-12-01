@@ -66,11 +66,15 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
+                            <h:commandLink action="#{motorista.ListaMotoristas()}"><i class="fa fa-id-card-o" aria-hidden="true"></i> Motoristas</h:commandLink>
+                        </li>
+                        <li>
                             <h:commandLink action="#{porteEntrega.ListaPorteEntrega()}"><i class="fa fa-truck"></i> Veiculos/Tipos de Entregas</h:commandLink>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-map-signs"></i> Rotas e Distancias<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 <li>
                                     <h:commandLink action="#{cidade.ListaCidades()}"><i class="fa fa-map-marker"></i> Cidades</h:commandLink>
                                 </li>

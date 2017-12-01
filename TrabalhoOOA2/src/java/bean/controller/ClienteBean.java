@@ -36,6 +36,6 @@ public class ClienteBean {
     
     
     public String Logar(){
-        return null;
+        return "";
     }
 }

@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Motorista.findAll", query = "SELECT m FROM Motorista m")
     , @NamedQuery(name = "Motorista.findById", query = "SELECT m FROM Motorista m WHERE m.id = :id")
+    , @NamedQuery(name = "Motorista.findByLoginSenha", query = "SELECT m FROM Motorista m WHERE m.login = :login and m.senha = :senha")
     , @NamedQuery(name = "Motorista.findByNome", query = "SELECT m FROM Motorista m WHERE m.nome = :nome")
     , @NamedQuery(name = "Motorista.findByCpf", query = "SELECT m FROM Motorista m WHERE m.cpf = :cpf")
     , @NamedQuery(name = "Motorista.findByLogin", query = "SELECT m FROM Motorista m WHERE m.login = :login")
