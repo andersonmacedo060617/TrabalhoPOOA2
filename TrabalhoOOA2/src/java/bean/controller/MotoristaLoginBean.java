@@ -20,6 +20,7 @@ public class MotoristaLoginBean {
 
     private Motorista motoristaLogin;
     private String mensagem;
+    private boolean logado;
     
     public Motorista getMotoristaLogin() {
         return motoristaLogin;
@@ -36,6 +37,15 @@ public class MotoristaLoginBean {
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }
+
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+    
     
     
     
@@ -44,11 +54,15 @@ public class MotoristaLoginBean {
      * Creates a new instance of MotoristaBean
      */
     public MotoristaLoginBean() {
-        this.mensagem = "security_admin/index";
+        this.mensagem = "";
+        motoristaLogin = new Motorista();
+        logado = false;
     }
     
     public String LoginMotorista(){
-        return "loginMotorista";
+        logado = false;
+        return "./loginMotorista?faces-redirect=true";
+        
     }
     
     public String Logar(){
@@ -56,10 +70,18 @@ public class MotoristaLoginBean {
         String retorno = "loginMotorista";
         if(m != null){
             this.motoristaLogin = m;
+            logado = true;
             retorno = "security_admin/index";
         }else{
+            logado = false;
             this.mensagem = "Login ou Senha incorretos";
         }
         return retorno;
+    }
+    
+    public String LogOut(){
+        this.motoristaLogin = new Motorista();
+        this.logado = false;
+        return LoginMotorista();
     }
 }

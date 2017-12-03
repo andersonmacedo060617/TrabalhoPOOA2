@@ -13,11 +13,12 @@ import model.Cliente;
  *
  * @author Anderson2
  */
-@ManagedBean(name = "cliente")
+@ManagedBean(name = "clienteLg")
 @SessionScoped
-public class ClienteBean {
+public class ClienteLgBean {
 
     private Cliente clienteLogin;
+    private boolean logado;
 
     public Cliente getClienteLogin() {
         return clienteLogin;
@@ -26,16 +27,31 @@ public class ClienteBean {
     public void setClienteLogin(Cliente clienteLogin) {
         this.clienteLogin = clienteLogin;
     }
+
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+    
     
     
     /**
      * Creates a new instance of ClienteBean
      */
-    public ClienteBean() {
+    public ClienteLgBean() {
+        clienteLogin = new Cliente();
+        logado = false;
     }
-    
     
     public String Logar(){
-        return "";
+        return "loginCliente?faces-redirect=true";
     }
+    
+    public String LoginCliente(){
+        return "loginCliente?faces-redirect=true";
+    }
+    
 }

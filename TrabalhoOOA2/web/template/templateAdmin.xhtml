@@ -23,6 +23,7 @@
 
     <div id="top">
             <!-- Navigation -->
+            <h:form>
         <nav class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -50,7 +51,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><h:commandLink action="#{motoristaLg.LogOut()}"> <i class="fa fa-sign-out fa-fw"></i> Logout</h:commandLink>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -60,7 +61,7 @@
             <!-- /.navbar-top-links -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <h:form>
+                    
                     <ul class="nav" id="side-menu">
                         <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
@@ -102,11 +103,12 @@
                             <!-- /.nav-second-level -->
                         </li>
                     </ul>
-                    </h:form>
+                    
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
         </nav>
+        </h:form>
     </div>
         <div>
             <div id="page-wrapper">

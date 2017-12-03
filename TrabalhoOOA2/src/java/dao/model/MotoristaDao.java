@@ -45,7 +45,7 @@ public class MotoristaDao extends BaseDao<Motorista>{
             Query q = em.createNamedQuery("Motorista.findByLoginSenha");
         
             q.setParameter("login", login);
-            q.setParameter("login", senha);
+            q.setParameter("senha", senha);
 
             return (Motorista) q.getSingleResult();
         
